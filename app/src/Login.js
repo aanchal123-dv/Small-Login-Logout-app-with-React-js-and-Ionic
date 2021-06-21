@@ -21,6 +21,8 @@ import {
     const { user, setUser } = useAuth();
   
     function loginHandler() {
+        if(password.length==0||username.length==0)
+        return;
       fetch("https://run.mocky.io/v3/060ff158-0348-40fb-8cff-783b7aa9afc4")
         .then((response) => response.json())
         .then((data) => {
@@ -49,6 +51,7 @@ import {
             <IonInput
               onIonChange={(e) => setUsername(e.target.value)}
               type="text"
+              required={true}
             ></IonInput>
           </IonItem>
           <IonItem>
@@ -56,6 +59,7 @@ import {
             <IonInput
               onIonChange={(e) => setPassword(e.target.value)}
               type="password"
+              required={true}
             ></IonInput>
           </IonItem>
           <p style={{ fontSize: "small" }}>
@@ -69,6 +73,7 @@ import {
                  </p>
         </IonContent>
       </IonPage>
+     
     );
   };
   

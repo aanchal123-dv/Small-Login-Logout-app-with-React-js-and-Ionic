@@ -14,6 +14,7 @@ function App() {
 		setspinner(true);
 		axios(gitHubUrl).then((data) => 
 		{
+			console.log(data)
 			const obj = { name: data.data.data.name, url: data.data.data.profile_url }
 			setUserData(obj)
 			console.log(userData.name)
@@ -41,3 +42,8 @@ function App() {
 }
 
 export default App;
+
+
+
+
+

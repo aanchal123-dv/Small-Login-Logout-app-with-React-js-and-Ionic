@@ -1,29 +1,57 @@
-import React from 'react'
-import '../src/HomePage.css'
-import { useHistory } from 'react-router';
-import { IonButton } from '@ionic/react';
-function HomePage() {
-    const history = useHistory();
-    const handleSubmit = (e) => {
-        window.localStorage.clear();
-        history.push("/");
-    }
-    return (
-        <div>
-            <img class="center"src="https://images.unsplash.com/photo-1552053831-71594a27632d?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZG9nfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" />
-            <h1 align="center">This Dog loves you</h1>
 
-            <img class="center"src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8ZG9nfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"/>
-            <h1 align="center">This Dog loves you</h1>
+import React, { useState, useEffect } from "react";
+import axios from 'axios'
+import "./App.css";
+import { IonButton,IonAvatar,IonLabel,IonItem} from "@ionic/react";
 
-            <img class="center"src="https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8ZG9nfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" />
-            <h1 align="center">This Dog loves you</h1>
+const gitHubUrl = "https://run.mocky.io/v3/0a7f0993-ef90-4697-8020-df9a3934726d";
 
-            <IonButton expand="block" onClick={handleSubmit}>
-                    Logout
-                </IonButton>
-        </div>
-    )
+function App() {
+	
+		const [userData, setUserData] = useState({});
+		const [spinner, setspinner] = useState(false);
+	    const [response, updateResponse] =useState([]);
+		useEffect(() =>
+		{
+			setspinner(true);
+			axios(gitHubUrl).then((response) => 
+			{
+			
+	            response=response.data;
+	            console.log(response.data.posts[0].title)
+				// const obj = { title: response.data.posts[0].title, 
+	            //     image: response.data.posts[0].img, 
+	            //     subtitle:response.data.posts[0].subtitle}
+				setUserData(response.data.posts)
+				console.log(response.data.posts)
+				setspinner(false);
+	            })
+		}, []);
+		if(spinner)
+		{
+			return(<h1>Load</h1>)
+			
+		}
+		else{
+			return (
+				<div className="App">
+					<h2>User Data</h2>
+					{/* <IonAvatar className="info-img"><img src={userData.image}/></IonAvatar>
+					<IonLabel>{userData.title}</IonLabel> */}
+					{/* {userData.map((user)=>{
+						return <IonItem>
+							<img src={user.image}/>
+							<IonLabel>{user.title}</IonLabel>
+							<IonLabel>{user.subtitle}</IonLabel>
+						</IonItem>
+					}
+					)} */}
+				</div>
+			);
+		}
 }
 
-export default HomePage
+export default App;
+
+
+

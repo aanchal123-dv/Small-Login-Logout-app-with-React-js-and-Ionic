@@ -1,3 +1,12 @@
 .info-img{
-    margin-left: 42%;
+    margin-left: 35%;
+
+}
+.card1{
+    margin-top: 50%;
+    margin-left: 10%;
+    height: 100%;
+    width: 80%;
+    padding: 19%;
+    background-color: rgb(168, 230, 166);
 }

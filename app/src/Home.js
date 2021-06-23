@@ -1,30 +1,43 @@
 import React from 'react'
-import { IonPage, IonContent, IonButton, IonFooter, IonToolbar, IonLabel,IonItem,IonHeader } from '@ionic/react'
+import { IonPage, IonContent,IonCard,IonButton,IonButtons,IonTitle, IonFooter, IonToolbar, IonLabel, IonItem, IonHeader } from '@ionic/react'
+import { IonIcon } from '@ionic/react'
+import { personCircle, search, helpCircle, star, create, ellipsisHorizontal, ellipsisVertical } from 'ionicons/icons';
+import "./Home.css"
+
 function Home() {
     return (
         <IonPage>
             <IonHeader>
-                <IonToolbar>
+                <IonToolbar  color="tertiary">
                     <IonLabel class="ion-text-center">Header</IonLabel>
                 </IonToolbar>
             </IonHeader>
-            <IonContent>
-                <IonItem>
-                    
-                <IonButton href="/login">Login</IonButton>
-                </IonItem>
-
-                <IonItem>
-                <IonButton href="/register">Register</IonButton>
-                </IonItem>
+            <IonContent color="light">
+                <IonCard className="home">
+               
+                    <IonButton className="login" href="/login">Login</IonButton>
+                    <IonButton className="register" href="/register">Register</IonButton>
+                   
+                </IonCard>
             </IonContent>
             <IonFooter>
-                <IonToolbar>
-                    <IonLabel>
-                        footer
-                    </IonLabel>
+            <IonToolbar color="tertiary">
+                    <IonButtons slot="secondary">
+                    <IonButton>
+                        <IonIcon slot="icon-only" icon={personCircle} />
+                    </IonButton>
+                    <IonButton>
+                        <IonIcon slot="icon-only" icon={search} />
+                    </IonButton>
+                    </IonButtons>
+                    <IonButtons slot="primary">
+                    <IonButton color="secondary">
+                        <IonIcon slot="icon-only" ios={ellipsisHorizontal} md={ellipsisVertical} />
+                    </IonButton>
+                    </IonButtons>
+                    <IonTitle>LOGIN/REGISTER TO CONTINUE</IonTitle>
                 </IonToolbar>
-            </IonFooter>
+                </IonFooter>
 
         </IonPage>
     )
